@@ -21,6 +21,12 @@ fi
 
 export _ZL_FZF_FLAG=${_ZL_FZF_FLAG:-"-e"}
 
+if [[ -n "$ZDOTDIR" ]] && ! which "$ZDOTDIR" &>/dev/null; then
+    echo "$ZDOTDIR not found"
+fi
+export _ZL_DATA=$ZDOTDIR/.zlua
+
+
 eval "$($ZLUA_EXEC $ZLUA_SCRIPT --init zsh once enhanced)"
 
 if [[ -z "$_ZL_NO_ALIASES" ]]; then
